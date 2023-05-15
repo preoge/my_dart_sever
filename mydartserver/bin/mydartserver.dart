@@ -47,7 +47,12 @@ final _router = shelf_router.Router()
   ..get('/helloworld', _helloWorldHandler)
   ..get(
     '/time',
-    (request) => Response.ok(DateTime.now().toUtc().toIso8601String()),
+    (request) => Response.ok(DateTime.now().toLocal().toIso8601String()),
+  )
+  ..get(
+    '/beijing-time',
+    (request) =>
+        Response.ok(DateTime.now().add(Duration(hours: 8)).toIso8601String()),
   )
   ..get('/info.json', _infoHandler)
   ..get('/sum/<a|[0-9]+>/<b|[0-9]+>', _sumHandler);
